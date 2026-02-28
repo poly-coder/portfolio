@@ -9,7 +9,7 @@ This document provides an overview of the architecture for the polyglot personal
 - **Orchestration & Deployment**: .NET Aspire (Local Orchestration) targeting Azure Container Apps (ACA).
 - **Task Runner**: `just` for cross-platform CLI standardization.
 - **Frontend**: TanStack Start (React, full-stack routing/data fetching) hosted in `src/frontend` (pnpm workspace).
-- **Backend API**: .NET 9 API (in `src/backend`) utilizing Marten for Document DB capabilities over PostgreSQL.
+- **Backend API**: .NET 10 API (in `src/backend`) utilizing Marten for Document DB capabilities over PostgreSQL.
 - **Workers (AI & Workflows)**: Node.js worker ecosystem in `src/workers` (pnpm workspace) integrating n8n, Mastra, Motia, and Temporal.io.
 - **Database & Authentication**: Supabase (PostgreSQL hosting for Marten, and Supabase Auth for identity management).
 
@@ -34,3 +34,40 @@ The repository follows a polyglot monorepo structure:
 ## Conclusion
 
 This architecture embraces a "best tool for the job" philosophy. By relying on .NET Aspire to orchestrate diverse project types, it keeps local development frictionless while ensuring a clear path to scalable cloud deployments on Azure Container Apps.
+
+## Supabase Provisioning Runbook (Dev)
+
+This runbook defines the baseline for Epic 2 task: **Provision Supabase Project (Postgres + Auth)**.
+
+### Scope
+
+- Environment: local/dev only.
+- Provisioning mode: manual in Supabase dashboard.
+- Auth baseline: email/password provider only.
+
+### Provisioning Steps
+
+1. Create a Supabase project dedicated to development.
+2. Enable/confirm Email provider in Supabase Auth settings.
+3. Capture API values and DB connection values.
+4. Populate local environment variables (contract in `.env.example`).
+5. Start Aspire via `just dev` so backend/frontend/workers can consume the same Supabase contract once scaffolded.
+
+### Required Local Configuration Contract
+
+- `SUPABASE_URL`
+- `SUPABASE_PUBLISHABLE_KEY`
+- `SUPABASE_SECRET_KEY`
+- `SUPABASE_DB_HOST`
+- `SUPABASE_DB_PORT`
+- `SUPABASE_DB_NAME`
+- `SUPABASE_DB_USER`
+- `SUPABASE_DB_PASSWORD`
+- Optional: `SUPABASE_CONNECTION_STRING`
+
+### Verification Checklist
+
+- Supabase dev project exists and is accessible.
+- Email/password auth is enabled.
+- API keys and DB values are retrievable and stored securely.
+- Local shell can load values and start AppHost (`just dev`).

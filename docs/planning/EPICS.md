@@ -10,8 +10,13 @@
 
 ## Epic 2: Core API Backend & Database Setup
 
-- [ ] Provision Supabase Project (Postgres + Auth).
-- [ ] Scaffold .NET 9 Web API in `src/backend`.
+- [ ] Provision Supabase Project (Postgres + Auth). _(in progress)_
+  - [x] Define Supabase local config contract in `.env.example`.
+  - [x] Add provisioning + verification runbook docs.
+  - [x] Add Supabase config placeholders in `src/apphost.cs`.
+  - [x] Create Supabase dev project in dashboard.
+  - [x] Verify email/password auth flow baseline.
+- [ ] Scaffold .NET 10 Web API in `src/backend`.
 - [ ] Integrate Marten into the .NET API and connect to Supabase Postgres.
 - [ ] Define initial Document Schemas (Articles, Config, User Profiles, etc.).
 - [ ] Implement secure endpoints with JWT validation using Supabase Auth keys.
