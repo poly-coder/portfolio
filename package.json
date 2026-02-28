@@ -1,6 +1,6 @@
 {
-  "name": "portfolio-monorepo",
-  "version": "1.0.0",
+  "name": "portfolio",
+  "version": "0.0.0",
   "description": "Personal Portfolio and Learning Lab (TanStack Start, .NET, Marten, Supabase)",
   "private": true,
   "engines": {
