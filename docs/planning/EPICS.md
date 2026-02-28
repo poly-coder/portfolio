@@ -2,10 +2,10 @@
 
 ## Epic 1: Monorepo Foundation & DevX
 
-- [ ] Initialize Git repository and `.gitignore` for node and .NET environments.
-- [ ] Set up Root Task Runner (`justfile`) with placeholder commands.
-- [ ] Create base `pnpm-workspace.yaml` for `src/frontend` and `src/workers` node modules.
-- [ ] Create base .NET solution (`.slnx`) for `src/backend`.
+- [x] Initialize Git repository and `.gitignore` for node and .NET environments.
+- [x] Set up Root Task Runner (`justfile`) with placeholder commands.
+- [x] Create base `pnpm-workspace.yaml` for `src/frontend` and `src/workers` node modules.
+- [x] Create base .NET solution (`.slnx`) for `src/backend`.
 - [ ] Initialize .NET Aspire AppHost (`src/aspire`) to orchestrate frontend, backend, and worker startup in one local command.
 
 ## Epic 2: Core API Backend & Database Setup
