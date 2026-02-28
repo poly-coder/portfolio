@@ -19,8 +19,9 @@ trust-dev-certs:
 
 # Run the local development environment via .NET Aspire
 dev:
-	cd src && aspire run
+	cd src && aspire run --project ./apphost.cs
 
 # Build all projects
 build:
-	@echo "[placeholder] build: frontend/backend not scaffolded yet"
+	@Write-Host "Error: build target not yet implemented - frontend/backend scaffolding in progress" -ForegroundColor Red
+	exit 1
