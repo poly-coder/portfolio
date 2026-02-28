@@ -10,11 +10,11 @@ help:
 
 # Install all dependencies (frontend, workers, dotnet restore)
 install:
-	@echo "[placeholder] install: monorepo packages not scaffolded yet"
+	dotnet dev-certs https --trust
 
 # Run the local development environment via .NET Aspire
 dev:
-	@echo "[placeholder] dev: AppHost not scaffolded yet"
+	dotnet run .\src\aspire.cs
 
 # Build all projects
 build:
