@@ -1,7 +1,4 @@
 {
-    "chat.tools.terminal.autoApprove": {
-        "just": true
-    },
     "cSpell.words": [
         "justfile",
         "Motia",
