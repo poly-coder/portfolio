@@ -6,11 +6,13 @@ var builder = DistributedApplication.CreateBuilder(args);
 // var api = builder.AddProject<Projects.Api>("api");
 
 // Epic 3 ── Uncomment once TanStack Start is scaffolded in src/frontend
-// var frontend = builder.AddNpmApp("frontend", "../frontend", "dev")
+// var frontendDir = Path.GetFullPath(Path.Combine(builder.AppHostDirectory, "frontend"));
+// var frontend = builder.AddNpmApp("frontend", frontendDir, "dev")
 //     .WithHttpEndpoint(env: "PORT");
 //     // .WithReference(api);  // add once api is wired
 
 // Epic 6 ── Uncomment once Node workers are scaffolded in src/workers
-// builder.AddNpmApp("workers", "../workers", "dev");
+// var workersDir = Path.GetFullPath(Path.Combine(builder.AppHostDirectory, "workers"));
+// builder.AddNpmApp("workers", workersDir, "dev");
 
 builder.Build().Run();
