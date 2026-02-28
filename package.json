@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-monorepo",
+  "version": "1.0.0",
+  "description": "Personal Portfolio and Learning Lab (TanStack Start, .NET, Marten, Supabase)",
+  "private": true,
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "just dev",
+    "build": "just build",
+    "install:all": "just install"
+  }
+}
