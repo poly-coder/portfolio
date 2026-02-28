@@ -1,3 +1,7 @@
+---
+description: This file describes the terminal usage guidelines for the project, including shell requirements and output filtering practices.
+applyTo: '**/*'
+---
 # Terminal Instructions
 
 ## Shell Requirements
