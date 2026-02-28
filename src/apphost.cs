@@ -2,6 +2,22 @@
 
 var builder = DistributedApplication.CreateBuilder(args);
 
+// Epic 2 ── Supabase configuration contract (consumed when api/frontend/workers wiring is enabled).
+// Keep variable names aligned with .env.example and project docs.
+var supabaseConfig = new
+{
+    Url = builder.Configuration["SUPABASE_URL"],
+    PublishableKey = builder.Configuration["SUPABASE_PUBLISHABLE_KEY"],
+    SecretKey = builder.Configuration["SUPABASE_SECRET_KEY"],
+    DbHost = builder.Configuration["SUPABASE_DB_HOST"],
+    DbPort = builder.Configuration["SUPABASE_DB_PORT"],
+    DbName = builder.Configuration["SUPABASE_DB_NAME"],
+    DbUser = builder.Configuration["SUPABASE_DB_USER"],
+    DbPassword = builder.Configuration["SUPABASE_DB_PASSWORD"],
+    ConnectionString = builder.Configuration["SUPABASE_CONNECTION_STRING"],
+};
+_ = supabaseConfig;
+
 // Epic 2 ── Uncomment once the .NET Web API project is added to src/backend/backend.slnx
 // var api = builder.AddProject<Projects.Api>("api");
 

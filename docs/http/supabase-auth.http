@@ -1,0 +1,56 @@
+### Supabase Auth Baseline Checks
+### REST Client syntax references: named requests, dotenv vars, prompt vars, request vars.
+### Run order: signup -> login -> getUser -> loginWrongPassword
+
+@supabaseUrl = {{$dotenv SUPABASE_URL}}
+@supabaseAnonKey = {{$dotenv SUPABASE_PUBLISHABLE_KEY}}
+@testEmail = test@example.com
+@testPassword = Test1234!
+@wrongPassword = WrongPass!
+
+### 1) Signup (create user)
+# @prompt testEmail Signup email
+# @prompt testPassword Signup password
+# @name signup
+POST {{supabaseUrl}}/auth/v1/signup HTTP/1.1
+apikey: {{supabaseAnonKey}}
+Content-Type: application/json
+
+{
+  "email": "{{testEmail}}",
+  "password": "{{testPassword}}"
+}
+
+### 2) Login (password grant)
+# @prompt testEmail Login email
+# @prompt testPassword Login password
+# @name login
+POST {{supabaseUrl}}/auth/v1/token?grant_type=password HTTP/1.1
+apikey: {{supabaseAnonKey}}
+Content-Type: application/json
+
+{
+  "email": "{{testEmail}}",
+  "password": "{{testPassword}}"
+}
+
+### 3) Inspect user with access token from login response
+@accessToken = {{login.response.body.$.access_token}}
+
+# @name getUser
+GET {{supabaseUrl}}/auth/v1/user HTTP/1.1
+apikey: {{supabaseAnonKey}}
+Authorization: Bearer {{accessToken}}
+
+### 4) Negative test (wrong password)
+# @prompt testEmail Negative test email
+# @prompt wrongPassword Wrong password value
+# @name loginWrongPassword
+POST {{supabaseUrl}}/auth/v1/token?grant_type=password HTTP/1.1
+apikey: {{supabaseAnonKey}}
+Content-Type: application/json
+
+{
+  "email": "{{testEmail}}",
+  "password": "{{wrongPassword}}"
+}
