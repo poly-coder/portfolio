@@ -1,1 +1,4 @@
-<Solution></Solution>
+<Solution>
+  <Project Path="Backend.Api/Backend.Api.csproj" />
+  <Project Path="backend.ServiceDefaults/backend.ServiceDefaults.csproj" />
+</Solution>
