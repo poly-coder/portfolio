@@ -6,7 +6,7 @@
 - [x] Set up Root Task Runner (`justfile`) with placeholder commands.
 - [x] Create base `pnpm-workspace.yaml` for `src/frontend` and `src/workers` node modules.
 - [x] Create base .NET solution (`.slnx`) for `src/backend`.
-- [ ] Initialize .NET Aspire AppHost (`src/aspire`) to orchestrate frontend, backend, and worker startup in one local command.
+- [x] Initialize .NET Aspire AppHost (`src/aspire`) to orchestrate frontend, backend, and worker startup in one local command.
 
 ## Epic 2: Core API Backend & Database Setup
 

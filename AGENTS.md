@@ -5,3 +5,11 @@ The role of this file is to describe common mistakes and confusion points that a
 This is still a greenfield project, not yet in production. Feel free for the time being to make any changes to the project without any concern for breaking changes. The goal is to get to a good state as quickly as possible, and then we can worry about breaking changes later on.
 
 Use rather succinct language when writing human-readable notes, sacrificing formality for clarity and speed.
+
+## Repo Commands
+
+Use `just` to run commands in the repo. The `justfile` is located at the root of the project, and you can add commands there as needed. For example, to start the development environment, you can run:
+
+```
+just dev    # This will start the frontend, backend, workers and containers all together with one command.
+```
