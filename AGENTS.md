@@ -18,7 +18,9 @@ just install   # Install pnpm deps + restore .NET solution.
 just dev       # Start Aspire AppHost local dev environment.
 just check     # Run node checks, markdown lint, and CSharpier check.
 just format    # Run node formatters, markdown lint --fix, and CSharpier format.
-just build     # Reserved; currently scaffold placeholder and exits with error.
+just build_js  # Build all pnpm-based projects.
+just build_cs  # Build all .NET projects in backend.slnx.
+just build     # Run both build_js and build_cs.
 ```
 
 Occasional setup command:
