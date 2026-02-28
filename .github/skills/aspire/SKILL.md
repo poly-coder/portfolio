@@ -42,19 +42,19 @@ Use this skill for .NET Aspire architecture, app orchestration, and CLI workflow
 Start at the smallest doc that answers the question, then expand only if needed.
 
 1. Level 1: Quick answer
-   - Read: `QUICKSTART.md`
+   - Read: `references/QUICKSTART.md`
    - Use when user asks for setup/run/basic commands.
 
 2. Level 2: Build workflow
-   - Read: `WORKFLOWS.md`
+   - Read: `references/WORKFLOWS.md`
    - Use when user wants sequence planning: scaffold → integrate → run → publish/deploy.
 
 3. Level 3: Integrations map
-   - Read: `INTEGRATIONS.md`
+   - Read: `references/INTEGRATIONS.md`
    - Use when choosing storage/database/messaging/caching/framework integrations.
 
 4. Level 4: Troubleshooting & references
-   - Read: `TROUBLESHOOTING.md`
+   - Read: `references/TROUBLESHOOTING.md`
    - Use when there are cert/runtime/connection-string/container-health issues.
 
 ## How to use supplemental docs
