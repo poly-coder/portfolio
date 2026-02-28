@@ -5,33 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Epic 2 ── Supabase configuration contract (consumed when api/frontend/workers wiring is enabled).
-// Keep variable names aligned with .env files and project docs.
-var supabaseSection = builder.Configuration.GetSection("SUPABASE");
+builder.AddSupabaseOptions();
 
-builder
-    .Services.AddOptions<SupabaseOptions>()
-    .Bind(supabaseSection)
-    .ValidateDataAnnotations()
-    .Validate(
-        options => options.HasRequiredValues(),
-        "All SUPABASE__* values must be set and non-empty."
-    )
-    .Validate(
-        options => options.TryBuildMartenConnectionString(out _),
-        "SUPABASE__CONNECTION_STRING must be a valid PostgreSQL connection string or postgres:// URI."
-    )
-    .ValidateOnStart();
-
-var supabaseOptions = supabaseSection.Get<SupabaseOptions>() ?? new SupabaseOptions();
-
-// Epic 2 ── Uncomment once the .NET Web API project is added to src/backend/backend.slnx
-var api = builder.AddProject<Projects.Backend_Api>("api");
-
-api.WithEnvironment("ConnectionStrings__Default", supabaseOptions.MartenConnectionString);
+var api = builder.AddApiProject();
 
 // Epic 3 ── Uncomment once TanStack Start is scaffolded in src/frontend
 // var frontendDir = Path.GetFullPath(Path.Combine(builder.AppHostDirectory, "frontend"));
@@ -47,6 +27,8 @@ builder.Build().Run();
 
 file sealed class SupabaseOptions
 {
+    public const string SectionName = "SUPABASE";
+
     [Required]
     [ConfigurationKeyName("URL")]
     public string Url { get; set; } = string.Empty;
@@ -227,5 +209,49 @@ file sealed class SupabaseOptions
         }
 
         return false;
+    }
+}
+
+file static class DistributedApplicationExtensions
+{
+    public static IDistributedApplicationBuilder AddSupabaseOptions(
+        this IDistributedApplicationBuilder builder
+    )
+    {
+        builder
+            .Services.AddOptions<SupabaseOptions>()
+            .Bind(builder.Configuration.GetSection(SupabaseOptions.SectionName))
+            .ValidateDataAnnotations()
+            .Validate(
+                options => options.HasRequiredValues(),
+                "All SUPABASE__* values must be set and non-empty."
+            )
+            .Validate(
+                options => options.TryBuildMartenConnectionString(out _),
+                "SUPABASE__CONNECTION_STRING must be a valid PostgreSQL connection string or postgres:// URI."
+            )
+            .ValidateOnStart();
+
+        return builder;
+    }
+
+    public static IResourceBuilder<ProjectResource> AddApiProject(
+        this IDistributedApplicationBuilder builder
+    )
+    {
+        var api = builder.AddProject<Projects.Backend_Api>("api");
+
+        api.WithEnvironment(context =>
+        {
+            SupabaseOptions options = context
+                .ExecutionContext.ServiceProvider.GetRequiredService<IOptions<SupabaseOptions>>()
+                .Value;
+            context.EnvironmentVariables.Add(
+                "ConnectionStrings__Default",
+                options.MartenConnectionString
+            );
+        });
+
+        return api;
     }
 }
