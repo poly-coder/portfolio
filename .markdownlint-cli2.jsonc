@@ -1,0 +1,12 @@
+{
+  "globs": ["**/*.md", "**/*.mdx"],
+  "gitignore": true,
+  "ignores": [
+    ".git",
+    "**/*snapshots*/**",
+    ".agents/**",
+    ".github/agents/**",
+    ".github/skills/**",
+    ".github/instructions/**"
+  ]
+}
