@@ -21,7 +21,7 @@ Do NOT use these commands:
 - `| cut` (use Select-Object instead)
 - `| sed` (use similar PowerShell constructs)
 
-These commands do not exist in PowerShell Core and will cause failures.
+These are Unix utilities and may not be reliably available across all contributor environments. Use PowerShell equivalents instead for consistent cross-platform compatibility.
 
 ### ✅ CORRECT: PowerShell equivalents
 
@@ -66,10 +66,13 @@ git log --oneline | Select-Object -First 5
 
 ## Path Handling
 
-- Use backslash `\` for path separators (Windows native)
-- Quote paths with spaces: `"C:\Path With Spaces\file.txt"`
-- Use `$PSScriptRoot` for current directory context when needed
-- Use `Get-Item`, `Get-ChildItem`, `Test-Path` for file operations (not Unix tools like `ls`, `find`, `[ -f ]`)
+- Use `Join-Path` for cross-platform-safe path construction (works on Windows, macOS, and Linux):
+  ```powershell
+  $logPath = Join-Path $PSScriptRoot 'logs' 'app.log'
+  ```
+- Quote paths with spaces: `"$(Join-Path $env:TEMP 'My File.txt')"`
+- Use `$PSScriptRoot` for current relative directory context
+- Use `Get-Item`, `Get-ChildItem`, `Test-Path` for portable file operations (instead of Unix tools like `ls`, `find`, `[ -f ]`)
 
 ## Command Execution
 

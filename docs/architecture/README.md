@@ -22,7 +22,7 @@ The repository follows a polyglot monorepo structure:
 - `src/frontend/`: Contains the TanStack Start web application.
 - `src/backend/`: Contains the .NET solution (`.slnx`), including the Core API and Marten implementation.
 - `src/workers/`: Contains Node.js backend services dedicated to workflows and AI agents (n8n, Temporal workers, etc.).
-- `src/aspire/` (or root-level script): The .NET Aspire orchestrator that spins up the frontend, backend, workers, and required local containers.
+- `src/apphost.cs` (root-level script): The .NET Aspire orchestrator that spins up the frontend, backend, workers, and required local containers.
 
 ### 2. Data Flow & Component Interaction
 
