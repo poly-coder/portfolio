@@ -10,6 +10,6 @@ Use rather succinct language when writing human-readable notes, sacrificing form
 
 Use `just` to run commands in the repo. The `justfile` is located at the root of the project, and you can add commands there as needed. For example, to start the development environment, you can run:
 
-```
+```pwsh
 just dev    # This will start the frontend, backend, workers and containers all together with one command.
 ```
