@@ -19,7 +19,7 @@ var supabaseConfig = new
 _ = supabaseConfig;
 
 // Epic 2 ── Uncomment once the .NET Web API project is added to src/backend/backend.slnx
-// var api = builder.AddProject<Projects.Api>("api");
+var api = builder.AddProject<Projects.Backend_Api>("api");
 
 // Epic 3 ── Uncomment once TanStack Start is scaffolded in src/frontend
 // var frontendDir = Path.GetFullPath(Path.Combine(builder.AppHostDirectory, "frontend"));

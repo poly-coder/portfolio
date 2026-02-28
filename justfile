@@ -32,3 +32,46 @@ dev: load-local-env
 build:
 	@Write-Host "Error: build target not yet implemented - frontend/backend scaffolding in progress" -ForegroundColor Red
 	exit 1
+
+
+# Run node quality checks
+check_js:
+	pnpm -r --if-present check
+
+# Run markdown quality checks
+check_md:
+	pnpm exec markdownlint-cli2
+
+# Run dotnet quality checks
+check_cs:
+	dotnet csharpier check .
+
+# Run all quality checks
+check: check_js check_md check_cs
+
+# Auto-format node projects
+format_js:
+	pnpm -r --if-present format
+
+# Auto-format a single JS/TS file
+format_js_file path:
+	pnpm exec prettier --write "{{path}}"
+
+# Auto-format markdown
+format_md:
+	pnpm exec markdownlint-cli2 --fix
+
+# Auto-format a single markdown file
+format_md_file path:
+	pnpm exec markdownlint-cli2 --fix "{{path}}"
+
+# Auto-format dotnet projects
+format_cs:
+	dotnet csharpier format .
+
+# Auto-format a single C# file
+format_cs_file path:
+	dotnet csharpier format "{{path}}"
+
+# Auto-format code and markdown across node and dotnet projects
+format: format_js format_md format_cs

@@ -16,7 +16,7 @@
   - [x] Add Supabase config placeholders in `src/apphost.cs`.
   - [x] Create Supabase dev project in dashboard.
   - [x] Verify email/password auth flow baseline.
-- [ ] Scaffold .NET 10 Web API in `src/backend`.
+- [x] Scaffold .NET 10 Web API in `src/backend`.
 - [ ] Integrate Marten into the .NET API and connect to Supabase Postgres.
 - [ ] Define initial Document Schemas (Articles, Config, User Profiles, etc.).
 - [ ] Implement secure endpoints with JWT validation using Supabase Auth keys.

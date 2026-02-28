@@ -8,8 +8,31 @@ Use rather succinct language when writing human-readable notes, sacrificing form
 
 ## Repo Commands
 
-Use `just` to run commands in the repo. The `justfile` is located at the root of the project, and you can add commands there as needed. For example, to start the development environment, you can run:
+Use `just` to run commands in the repo. The `justfile` is at the repo root.
+
+Daily local dev commands:
 
 ```pwsh
-just dev    # Starts the Aspire AppHost entrypoint (service wiring is still being scaffolded).
+just help      # List available commands.
+just install   # Install pnpm deps + restore .NET solution.
+just dev       # Start Aspire AppHost local dev environment.
+just check     # Run node checks, markdown lint, and CSharpier check.
+just format    # Run node formatters, markdown lint --fix, and CSharpier format.
+just build     # Reserved; currently scaffold placeholder and exits with error.
 ```
+
+Occasional setup command:
+
+```pwsh
+just trust-dev-certs   # Trust local HTTPS dev cert.
+```
+
+## Immediate Per-File Formatting
+
+When you create or modify a file, run its formatter/linter command immediately after the edit and before any other command (including build/check/test/dev):
+
+- `.cs`: `just format_cs_file "<file_path>"`
+- `.md`: `just format_md_file "<file_path>"`
+- `.ts`, `.tsx`, `.js`, `.jsx`: `just format_js_file "<file_path>"`
+
+Do this right after each relevant file edit, then continue with broader repo commands like `just check` or `just format`.
