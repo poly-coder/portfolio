@@ -55,15 +55,24 @@ This runbook defines the baseline for Epic 2 task: **Provision Supabase Project 
 
 ### Required Local Configuration Contract
 
-- `SUPABASE_URL`
-- `SUPABASE_PUBLISHABLE_KEY`
-- `SUPABASE_SECRET_KEY`
-- `SUPABASE_DB_HOST`
-- `SUPABASE_DB_PORT`
-- `SUPABASE_DB_NAME`
-- `SUPABASE_DB_USER`
-- `SUPABASE_DB_PASSWORD`
-- Optional: `SUPABASE_CONNECTION_STRING`
+- `SUPABASE__URL`
+- `SUPABASE__PUBLISHABLE_KEY`
+- `SUPABASE__SECRET_KEY`
+- `SUPABASE__DB_HOST`
+- `SUPABASE__DB_PORT`
+- `SUPABASE__DB_NAME`
+- `SUPABASE__DB_USER`
+- `SUPABASE__DB_PASSWORD`
+- `SUPABASE__CONNECTION_STRING`
+
+### Backend DB Integration Status
+
+- `src/backend/Backend.Api` now registers Marten against Supabase Postgres.
+- AppHost validates Supabase options and forwards only `ConnectionStrings__Default` to the API project.
+- API resolves the database connection from `ConnectionStrings:Default`.
+
+- SSL mode is normalized to `Require`; Development also enables trust server certificate when not set.
+- Marten auto-schema mode is `CreateOrUpdate` only in Development and `None` otherwise.
 
 ### Verification Checklist
 

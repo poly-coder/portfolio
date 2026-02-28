@@ -23,15 +23,22 @@ This repository currently uses **manual Supabase dashboard provisioning** for lo
 
 Collect these values from **Project Settings** and database connection pages:
 
-- `SUPABASE_URL`
-- `SUPABASE_PUBLISHABLE_KEY`
-- `SUPABASE_SECRET_KEY`
-- `SUPABASE_DB_HOST`
-- `SUPABASE_DB_PORT`
-- `SUPABASE_DB_NAME`
-- `SUPABASE_DB_USER`
-- `SUPABASE_DB_PASSWORD`
-- Optional: `SUPABASE_CONNECTION_STRING`
+- `SUPABASE__URL`
+- `SUPABASE__PUBLISHABLE_KEY`
+- `SUPABASE__SECRET_KEY`
+- `SUPABASE__DB_HOST`
+- `SUPABASE__DB_PORT`
+- `SUPABASE__DB_NAME`
+- `SUPABASE__DB_USER`
+- `SUPABASE__DB_PASSWORD`
+- `SUPABASE__CONNECTION_STRING`
+
+Backend API database behavior (Epic 2):
+
+- The API now uses **Marten** with PostgreSQL.
+- AppHost validates Supabase config and maps the computed DB connection to `ConnectionStrings__Default` for the API process.
+- API resolves the database only from `ConnectionStrings:Default`.
+- SSL mode is forced to `Require`; development also sets `Trust Server Certificate=true` when absent.
 
 The local variable contract is defined in `.env.example`.
 
@@ -40,14 +47,15 @@ The local variable contract is defined in `.env.example`.
 In PowerShell, set environment variables in your current shell (or source your local env file):
 
 ```powershell
-$env:SUPABASE_URL = "https://<project-ref>.supabase.co"
-$env:SUPABASE_PUBLISHABLE_KEY = "<publishable-key>"
-$env:SUPABASE_SECRET_KEY = "<secret-key>"
-$env:SUPABASE_DB_HOST = "db.<project-ref>.supabase.co"
-$env:SUPABASE_DB_PORT = "5432"
-$env:SUPABASE_DB_NAME = "postgres"
-$env:SUPABASE_DB_USER = "postgres"
-$env:SUPABASE_DB_PASSWORD = "<db-password>"
+$env:SUPABASE__URL = "https://<project-ref>.supabase.co"
+$env:SUPABASE__PUBLISHABLE_KEY = "<publishable-key>"
+$env:SUPABASE__SECRET_KEY = "<secret-key>"
+$env:SUPABASE__DB_HOST = "db.<project-ref>.supabase.co"
+$env:SUPABASE__DB_PORT = "5432"
+$env:SUPABASE__DB_NAME = "postgres"
+$env:SUPABASE__DB_USER = "postgres"
+$env:SUPABASE__DB_PASSWORD = "<db-password>"
+$env:SUPABASE__CONNECTION_STRING = "postgresql://postgres:<db-password>@db.<project-ref>.supabase.co:5432/postgres"
 ```
 
 Then run:

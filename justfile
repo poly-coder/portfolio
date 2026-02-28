@@ -28,10 +28,16 @@ load-local-env:
 dev: load-local-env
 	@cd src && aspire run --project ./apphost.cs
 
+# Build all pnpm-based projects
+build_js:
+	pnpm -r --if-present build
+
+# Build all dotnet-based projects
+build_cs:
+	dotnet build .\src\backend\backend.slnx
+
 # Build all projects
-build:
-	@Write-Host "Error: build target not yet implemented - frontend/backend scaffolding in progress" -ForegroundColor Red
-	exit 1
+build: build_js build_cs
 
 
 # Run node quality checks

@@ -2,8 +2,8 @@
 ### REST Client syntax references: named requests, dotenv vars, prompt vars, request vars.
 ### Run order: signup -> login -> getUser -> loginWrongPassword
 
-@supabaseUrl = {{$dotenv SUPABASE_URL}}
-@supabaseAnonKey = {{$dotenv SUPABASE_PUBLISHABLE_KEY}}
+@supabaseUrl = {{$dotenv SUPABASE__URL}}
+@supabaseAnonKey = {{$dotenv SUPABASE__PUBLISHABLE_KEY}}
 @testEmail = test@example.com
 @testPassword = Test1234!
 @wrongPassword = WrongPass!
