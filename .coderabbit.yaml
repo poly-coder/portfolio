@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: "en"
+reviews:
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  path_filters:
+    - "**/*"
+    - "!.vscode/**"
+    - "!.claude/**/*"
+    - "!.github/**/*"
+    - "!**/node_modules/**"
+    - "!**/*.xml"
+    - "!**/*.json"
+    - "!**/*.svg"
+    - "!**/*.png"
+    - "!**/*.jpg"
+    - "!**/*.gif"
+    - "!**/*.lock"
+  path_instructions:
+    - path: "**/*.{ts,tsx}"
+      instructions: |
+        Review the Typescript and React code for conformity with best practices in React, TanStack,
+        Convex, and Typescript. Highlight any deviations.
+    - path: "**/*.{cs,csx}"
+      instructions: |
+        Review the C# code for conformity with best practices in C#, .NET, and related frameworks.
+        Highlight any deviations.
+  auto_review:
+    enabled: true
+    ignore_title_keywords:
+      - "WIP"
+      - "DO NOT MERGE"
+      - "DRAFT"
+    drafts: false
+    base_branches:
+      - "develop"
+      - "main"
+      - "release/.*"
+      - "feat/.*"

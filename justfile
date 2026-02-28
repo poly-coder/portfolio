@@ -10,21 +10,18 @@ help:
 
 # Install all dependencies (frontend, workers, dotnet restore)
 install:
-	@echo "Installing Node dependencies..."
 	pnpm install
-	@echo "Restoring .NET dependencies..."
-	dotnet restore src/backend/Backend.slnx
-	dotnet restore src/aspire/AppHost.csproj
+	dotnet restore .\src\backend\backend.slnx
+
+# Trust local HTTPS development certificate (manual/opt-in)
+trust-dev-certs:
+	dotnet dev-certs https --trust
 
 # Run the local development environment via .NET Aspire
 dev:
-	@echo "Starting development environment..."
-	dotnet run --project src/aspire/AppHost.csproj
+	cd src && aspire run --project ./apphost.cs
 
 # Build all projects
 build:
-	@echo "Building frontend workspace..."
-	cd src/frontend && pnpm run build
-	@echo "Building backend..."
-	dotnet build src/backend/Backend.slnx
-	dotnet build src/aspire/AppHost.csproj
+	@Write-Host "Error: build target not yet implemented - frontend/backend scaffolding in progress" -ForegroundColor Red
+	exit 1
